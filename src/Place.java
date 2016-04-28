@@ -6,7 +6,7 @@ public class Place {
 
 	private Station station;
 
-	//test
+	//test lbr
 	
-	// LBR
+	// LBR 1
 }
