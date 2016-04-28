@@ -6,9 +6,13 @@ public class Place {
 
 	private Station station;
 
-	//test
+	//test lbr
 	
+<<<<<<< HEAD    
 	// LBR
 	
 	// Test 2
+=======
+	// LBR 1
+>>>>>>> origin/master
 }
