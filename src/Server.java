@@ -19,6 +19,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 	}
 	
 	private static final long serialVersionUID = 1L;
+	private ArrayList<Station> stations;
+	private ArrayList<Vehicule> vehiculeLoue;  
 	private ArrayList<IUtilisateur> utilisateurs;
 	
 	protected Server() throws RemoteException {
@@ -47,8 +49,16 @@ public class Server extends UnicastRemoteObject implements IServer{
 	 */
 	@Override
 	public Vehicule louer(Station station, TypeVehicule typeVehicule) {
-		// TODO Auto-generated method stub
-		return null;
+		Vehicule vehiculeRetour = null;
+		
+		for (Station stationTmp : stations) {
+			if (station == stationTmp){
+				// Boucle pour trouver une place de libre
+				vehiculeRetour = station.getVehiculeDisponible();
+			}
+		}
+		
+		return vehiculeRetour;
 	}
 
 	/*
@@ -57,8 +67,11 @@ public class Server extends UnicastRemoteObject implements IServer{
 	 */
 	@Override
 	public boolean rendre(Station station, Vehicule vehicule) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean retourPossible = false;
+		
+		retourPossible = station.rendre(vehicule);
+		
+		return retourPossible;
 	}
 
 }
