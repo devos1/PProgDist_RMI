@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -12,6 +13,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 		IServer server = new Server();
 		Registry registry = LocateRegistry.createRegistry(1099);
 		registry.bind("Server", server);
+		
+		System.out.println("Serveur RMI UP");
 
 	}
 	
@@ -29,12 +32,33 @@ public class Server extends UnicastRemoteObject implements IServer{
 			//user.display(texte);
 		}
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see IServer#MajPlaces(Place, int)
+	 */
+	public void MajPlaces(Place place, int nbPlaceLoue){
+	
+	}
 
-
+	/*
+	 * (non-Javadoc)
+	 * @see IServer#louer(Station, TypeVehicule)
+	 */
 	@Override
-	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
-		utilisateurs.add(utilisateur);
-		
+	public Vehicule louer(Station station, TypeVehicule typeVehicule) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see IServer#rendre(Station, Vehicule)
+	 */
+	@Override
+	public boolean rendre(Station station, Vehicule vehicule) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
