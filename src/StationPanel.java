@@ -1,29 +1,47 @@
-import javax.swing.JPanel;
-
 import java.awt.BorderLayout;
-
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import java.awt.SystemColor;
 import java.awt.Color;
-import javax.swing.JTextPane;
-
-import com.apple.dnssd.TXTRecord;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class StationPanel extends JPanel {
 
-	JTextPane txtTitle;
+	private static final long serialVersionUID = 1L;
+	JLabel lblTitle;
+	StationFooterPanel sfPanel;
+	JPanel panelDetails;
+	JLabel lblVelosDetails, lblVoituresDetails;
 
 	/**
 	 * Create the panel.
 	 */
 	public StationPanel() {
-		txtTitle = new JTextPane();
-		txtTitle.setText("STATION ...");
-		// txtTitle.setBackground(Color.darkGray);
-		// txtTitle.setForeground(Color.white);
-		add(txtTitle);
 
+		setLayout(new BorderLayout());
+
+		// Create instances
+		lblTitle = new JLabel(" STATION ...");
+		sfPanel = new StationFooterPanel();
+		panelDetails = new JPanel();
+		lblVelosDetails = new JLabel(" VELOS : x places libres, y vélos disponibles");
+		lblVoituresDetails = new JLabel(" VOITURES : x places libres, y voitures disponibles");
+
+		// Custom panel details
+		panelDetails.setLayout(new GridLayout(2, 1));
+
+		// add components to panel details
+		panelDetails.add(lblVelosDetails);
+		panelDetails.add(lblVoituresDetails);
+
+		// Custom
+		lblTitle.setOpaque(isOpaque());
+		lblTitle.setBackground(Color.GRAY);
+		lblTitle.setForeground(Color.WHITE);
+
+		// Add to panel
+		add(lblTitle, BorderLayout.NORTH);
+		add(sfPanel, BorderLayout.SOUTH);
+		add(panelDetails, BorderLayout.CENTER);
 	}
 
 }

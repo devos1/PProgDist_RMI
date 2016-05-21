@@ -1,32 +1,52 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Frame;
-import java.awt.LayoutManager;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
+import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextPane;
 
 public class AppFrame extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
 	
 	// VARIABLES
 	JLabel lblNbLocation; 
 	JLabel lblUser;
-	StationPanel panelA;
-	HeaderPanel panelHeader;
+	StationPanel panelStationA, panelStationB, panelStationC, panelStationD;
+	JPanel panelStations;
+	GridLayout stationsMainLayout = new GridLayout(2, 2);
+	javax.swing.border.Border blackBorder;
 	
 	public AppFrame(){
-		super("Location de véhicules dans toute la Suisse");	
+		super("Location de véhicules dans toute la Suisse");
+		blackBorder = BorderFactory.createLineBorder(Color.black, 2, true);
+		javax.swing.border.Border paneEdge = BorderFactory.createEmptyBorder(10,10,10,10);
 		
 		setLayout(new BorderLayout());
 		
 		// Create instances
-		lblNbLocation = new JLabel("Nb de locations : 0 véhicules");
+		lblNbLocation = new JLabel("Nombre de locations : 0 véhicules");
 		lblUser = new JLabel("Utilisateur : John Doe");
+		panelStationA = new StationPanel();
+		panelStationB = new StationPanel();
+		panelStationC = new StationPanel();
+		panelStationD = new StationPanel();
+		panelStations = new JPanel();
+		
+		// Custom panel Stations and add stations
+		panelStations.setBorder(paneEdge);
+		panelStationA.setBorder(blackBorder);
+		panelStationB.setBorder(blackBorder);
+		panelStationC.setBorder(blackBorder);
+		panelStationD.setBorder(blackBorder);
+		panelStations.setLayout(stationsMainLayout);
+		panelStations.add(panelStationA);
+		panelStations.add(panelStationB);
+		panelStations.add(panelStationC);
+		panelStations.add(panelStationD);
+		stationsMainLayout.setHgap(10);
+		stationsMainLayout.setVgap(10);
 		
 		// Custom labels
 		lblNbLocation.setOpaque(isOpaque());
@@ -39,14 +59,10 @@ public class AppFrame extends JFrame {
 		
 		// Add to pane
 		add(lblNbLocation, BorderLayout.NORTH);
+		add(panelStations, BorderLayout.CENTER);
 		add(lblUser, BorderLayout.SOUTH);
 		
-/*		panelHeader =  new HeaderPanel();
-		panelA = new StationPanel();
-		add(panelHeader, BorderLayout.NORTH);
-		add(panelA, BorderLayout.CENTER);	*/
-		
-		setSize(600, 400);
+		setSize(900, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
