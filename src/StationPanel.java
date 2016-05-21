@@ -18,12 +18,11 @@ public class StationPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public StationPanel() {
-		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		txtTitle = new JTextPane();
 		txtTitle.setText("STATION ...");
-		txtTitle.setBackground(Color.darkGray);
-		txtTitle.setForeground(Color.white);
-		add(txtTitle, BorderLayout.NORTH);
+		// txtTitle.setBackground(Color.darkGray);
+		// txtTitle.setForeground(Color.white);
+		add(txtTitle);
 
 	}
 
