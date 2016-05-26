@@ -76,7 +76,7 @@ public class Server extends UnicastRemoteObject implements IServer{
 
 	@Override
 	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
-		// TODO Auto-generated method stub
+		System.out.println("wdadwadw");
 		
 	}
 

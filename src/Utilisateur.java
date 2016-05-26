@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 
+	private static final long serialVersionUID = 1L;
 	private IServer server;
 	//private UserInterface userInterface;
 	
