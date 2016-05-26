@@ -22,6 +22,8 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 			IServer server = (IServer) registry.lookup("ServerStation");
 			Utilisateur utilisateur = new Utilisateur(server);
 			new AppFrame(utilisateur);
+			
+			utilisateur.display();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
