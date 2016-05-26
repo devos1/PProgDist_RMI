@@ -76,8 +76,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 
 	@Override
 	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
-		System.out.println("wdadwadw");
-		
+		System.out.println("Utilisateurs ajoutés");
+		this.utilisateurs.add(utilisateur);
 	}
 
 }

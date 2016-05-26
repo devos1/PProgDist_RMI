@@ -4,6 +4,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 
@@ -29,7 +30,11 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	protected Utilisateur(IServer server) throws RemoteException {
 		super();
 		this.server = server;
-    	server.addUtilisateur(this);
+    	
+		Random rand = new Random();
+		this.setNom("User" +  rand.nextInt(1000));		
+		server.addUtilisateur(this);
+    	
 	}
 
 	public int login() {
@@ -61,6 +66,16 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	public void majStations(ArrayList<Station> stations) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	//GETTER - SETTER
+	
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
 	}
 
 }
