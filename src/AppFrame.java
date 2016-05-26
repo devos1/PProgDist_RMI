@@ -1,12 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class AppFrame extends JFrame {
+public class AppFrame extends JFrame implements IUserInterface{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -23,14 +24,15 @@ public class AppFrame extends JFrame {
 		super("Location de véhicules dans toute la Suisse");
 		this.user = user;
 		
+		
 		blackBorder = BorderFactory.createLineBorder(Color.black, 2, true);
 		javax.swing.border.Border paneEdge = BorderFactory.createEmptyBorder(10,10,10,10);
 		
 		setLayout(new BorderLayout());
 		
 		// Create instances
-		lblNbLocation = new JLabel("Nombre de locations : 0 véhicules");
-		lblUser = new JLabel("Utilisateur : John Doe");
+		lblNbLocation = new JLabel("");
+		lblUser = new JLabel("");
 		panelStationA = new StationPanel();
 		panelStationB = new StationPanel();
 		panelStationC = new StationPanel();
@@ -68,5 +70,20 @@ public class AppFrame extends JFrame {
 		setSize(900, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	@Override
+	public void display(ArrayList<String> texteEcran, String nomStation) {
+		// TODO Auto-generated method stub	
+	}
+
+	@Override
+	public void setNbLocation(int nbLocation) {
+		lblNbLocation.setText("Nombre de locations : " + nbLocation + " véhicules");
+	}
+
+	@Override
+	public void setUser(String nomUser) {
+		lblUser.setText("Utilisateur : " + nomUser);		
 	}
 }
