@@ -10,7 +10,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 
 	private static final long serialVersionUID = 1L;
 	private IServer server;
-	//private UserInterface userInterface;
+	private IUserInterface userInterface;
 	
 	private String nom;
 	private String prenom;
@@ -43,6 +43,10 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 
 	public int logout() {
 		return 0;
+	}
+	
+	public void setUserInterface(IUserInterface userInterface) {
+		this.userInterface = userInterface;
 	}
 
 	/*
@@ -77,5 +81,13 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
+	@Override
+	public void display() throws RemoteException {
+		userInterface.setNbLocation(1);
+		
+	}
+	
+	
 
 }
