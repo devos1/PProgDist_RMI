@@ -10,14 +10,15 @@ import javax.swing.JPanel;
 public class StationFooterPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
+	private Utilisateur user;
 	JLabel lblLouer, lblRendre;
 	JComboBox<String> comboLouer;
 	JComboBox<String> comboRendre;
 	JPanel panelLouer, panelRendre;
 	
 	// CONSTRUCTEUR
-	public StationFooterPanel() {
-		
+	public StationFooterPanel(Utilisateur user) {
+		this.user = user;
 		setLayout(new GridLayout(0, 2));
 		
 		String[] vehicules = { "auto", "vélo" };	

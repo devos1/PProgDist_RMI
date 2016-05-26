@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 public class StationPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private Utilisateur user;
 	JLabel lblTitle;
 	StationFooterPanel sfPanel;
 	JPanel panelDetails;
@@ -19,13 +20,13 @@ public class StationPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public StationPanel() {
-
+	public StationPanel(Utilisateur user) {
+		this.user = user;
 		setLayout(new BorderLayout());
 
 		// Create instances
 		lblTitle = new JLabel(" STATION ...");
-		sfPanel = new StationFooterPanel();
+		sfPanel = new StationFooterPanel(this.user);
 		panelDetails = new JPanel();
 		lblVelosDetails = new JLabel(" VELOS : x places libres, y vélos disponibles");
 		lblVoituresDetails = new JLabel(" VOITURES : x places libres, y voitures disponibles");

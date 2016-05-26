@@ -33,10 +33,10 @@ public class AppFrame extends JFrame implements IUserInterface{
 		// Create instances
 		lblNbLocation = new JLabel("...");
 		lblUser = new JLabel("...");
-		panelStationA = new StationPanel();
-		panelStationB = new StationPanel();
-		panelStationC = new StationPanel();
-		panelStationD = new StationPanel();
+		panelStationA = new StationPanel(this.user);
+		panelStationB = new StationPanel(this.user);
+		panelStationC = new StationPanel(this.user);
+		panelStationD = new StationPanel(this.user);
 		panelStations = new JPanel();
 		
 		// Custom panel Stations and add stations
