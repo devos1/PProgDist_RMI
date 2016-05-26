@@ -15,6 +15,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	private String nom;
 	private String prenom;
 	private Vehicule vehicule;
+	private ArrayList<Station> stations;
 	
 	public static void main(String[] args) throws RemoteException, NotBoundException {
 		Registry registry = LocateRegistry.getRegistry("localhost");
@@ -34,8 +35,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		Random rand = new Random();
 		this.setNom("User" +  rand.nextInt(1000));		
 		server.addUtilisateur(this);
-		this.display();
-    	
+		stations = server.envoyerStation();
 	}
 
 	public int login() {

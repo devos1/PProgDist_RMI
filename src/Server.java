@@ -80,4 +80,9 @@ public class Server extends UnicastRemoteObject implements IServer{
 		this.utilisateurs.add(utilisateur);
 	}
 
+	@Override
+	public ArrayList<Station> envoyerStation() {
+		return this.stations;
+	}
+
 }
