@@ -11,6 +11,7 @@ public class AppFrame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	// VARIABLES
+	Utilisateur user;
 	JLabel lblNbLocation; 
 	JLabel lblUser;
 	StationPanel panelStationA, panelStationB, panelStationC, panelStationD;
@@ -18,8 +19,10 @@ public class AppFrame extends JFrame {
 	GridLayout stationsMainLayout = new GridLayout(2, 2);
 	javax.swing.border.Border blackBorder;
 	
-	public AppFrame(){
+	public AppFrame(Utilisateur user){
 		super("Location de véhicules dans toute la Suisse");
+		this.user = user;
+		
 		blackBorder = BorderFactory.createLineBorder(Color.black, 2, true);
 		javax.swing.border.Border paneEdge = BorderFactory.createEmptyBorder(10,10,10,10);
 		

@@ -1,10 +1,13 @@
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class StationFooterPanel extends JPanel {
+public class StationFooterPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	JLabel lblLouer, lblRendre;
@@ -12,6 +15,7 @@ public class StationFooterPanel extends JPanel {
 	JComboBox<String> comboRendre;
 	JPanel panelLouer, panelRendre;
 	
+	// CONSTRUCTEUR
 	public StationFooterPanel() {
 		
 		setLayout(new GridLayout(0, 2));
@@ -43,5 +47,12 @@ public class StationFooterPanel extends JPanel {
 		// Add component to main panel
 		add(panelLouer);
 		add(panelRendre);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
+		String typeVehicule = (String)cbTypeV.getSelectedItem();
+		
 	}
 }
