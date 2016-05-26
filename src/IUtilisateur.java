@@ -3,6 +3,6 @@ import java.util.ArrayList;
 
 public interface IUtilisateur {
 	void majPlaces(Place place, int nbPlaceLoue) throws RemoteException;
-	void majStations(ArrayList<Station> stations);
+	void majStations(ArrayList<Station> stations) throws RemoteException;;
 
 }
