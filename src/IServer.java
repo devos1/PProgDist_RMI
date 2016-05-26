@@ -7,6 +7,6 @@ public interface IServer extends Remote {
 	boolean rendre(Station station, Vehicule vehicule) throws RemoteException;
 	void addUtilisateur(IUtilisateur utilisateur) throws RemoteException;
 	
-	ArrayList<Station> envoyerStation();
+	ArrayList<Station> envoyerStation() throws RemoteException;
 	
 }
