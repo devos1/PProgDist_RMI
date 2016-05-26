@@ -11,7 +11,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	private Vehicule vehicule;
 	
 	public static void main(String[] args) {
-		new AppFrame();
+		new AppFrame(null);
 	}
 	
 	protected Utilisateur() throws RemoteException {
