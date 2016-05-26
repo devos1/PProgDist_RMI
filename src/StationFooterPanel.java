@@ -20,7 +20,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		
 		setLayout(new GridLayout(0, 2));
 		
-		String[] vehicules = { "auto", "vélo" };
+		String[] vehicules = { "auto", "vélo" };	
 		
 		// Create instances
 		lblLouer = new JLabel(" Louer");
@@ -30,6 +30,9 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		panelLouer = new JPanel();
 		panelRendre = new JPanel();
 		
+		// Add listeners
+		comboLouer.addActionListener(this);
+		comboRendre.addActionListener(this);
 		// Custom labels
 		lblLouer.setForeground(Color.BLUE);
 		lblRendre.setForeground(Color.RED);
@@ -51,8 +54,9 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		@SuppressWarnings("unchecked")
 		JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
 		String typeVehicule = (String)cbTypeV.getSelectedItem();
-		
+		javax.swing.JOptionPane.showMessageDialog(null,"Tu as choisi " + typeVehicule); 
 	}
 }
