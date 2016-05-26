@@ -22,8 +22,6 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 			IServer server = (IServer) registry.lookup("ServerStation");
 			Utilisateur utilisateur = new Utilisateur(server);
 			new AppFrame(utilisateur);
-			
-			utilisateur.display();
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -36,6 +34,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		Random rand = new Random();
 		this.setNom("User" +  rand.nextInt(1000));		
 		server.addUtilisateur(this);
+		this.display();
     	
 	}
 
@@ -54,7 +53,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	/*
 	 * (non-Javadoc)
 	 * @see IUtilisateur#majPlaces(Place, int)
-	 * Envoie une place avec un changement d'état (vehicule en plus ou en mois)
+	 * Envoie une place avec un changement d'ï¿½tat (vehicule en plus ou en mois)
 	 */
 	@Override
 	public void majPlaces(Place place, int nbPlaceLoue) throws RemoteException {
@@ -65,8 +64,8 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	/*
 	 * (non-Javadoc)
 	 * @see IUtilisateur#majStations(java.util.ArrayList)
-	 * Envoi l'ensemble des stations du système
-	 * Utiliser à l'initialisation d'un client
+	 * Envoi l'ensemble des stations du systï¿½me
+	 * Utiliser ï¿½ l'initialisation d'un client
 	 */
 	@Override
 	public void majStations(ArrayList<Station> stations) {

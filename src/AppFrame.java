@@ -21,18 +21,18 @@ public class AppFrame extends JFrame implements IUserInterface{
 	javax.swing.border.Border blackBorder;
 	
 	public AppFrame(Utilisateur user){
-		super("Location de véhicules dans toute la Suisse");
+		super("Location de vehicules dans toute la Suisse");
 		this.user = user;
-		
-		
+		user.setUserInterface(this);
+				
 		blackBorder = BorderFactory.createLineBorder(Color.black, 2, true);
 		javax.swing.border.Border paneEdge = BorderFactory.createEmptyBorder(10,10,10,10);
 		
 		setLayout(new BorderLayout());
 		
 		// Create instances
-		lblNbLocation = new JLabel("");
-		lblUser = new JLabel("");
+		lblNbLocation = new JLabel("...");
+		lblUser = new JLabel("...");
 		panelStationA = new StationPanel();
 		panelStationB = new StationPanel();
 		panelStationC = new StationPanel();
