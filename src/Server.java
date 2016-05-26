@@ -12,7 +12,7 @@ public class Server extends UnicastRemoteObject implements IServer{
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 		IServer server = new Server();
 		Registry registry = LocateRegistry.createRegistry(1099);
-		registry.bind("Server", server);
+		registry.bind("ServerStation", server);
 		
 		System.out.println("Serveur RMI UP");
 
@@ -72,6 +72,12 @@ public class Server extends UnicastRemoteObject implements IServer{
 		retourPossible = station.rendre(vehicule);
 		
 		return retourPossible;
+	}
+
+	@Override
+	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

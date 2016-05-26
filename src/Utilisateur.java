@@ -1,21 +1,34 @@
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 
+	private IServer server;
+	//private UserInterface userInterface;
+	
 	private String nom;
-
 	private String prenom;
-
 	private Vehicule vehicule;
 	
-	public static void main(String[] args) {
-		new AppFrame(null);
+	public static void main(String[] args) throws RemoteException, NotBoundException {
+		Registry registry = LocateRegistry.getRegistry("localhost");
+		try {
+			IServer server = (IServer) registry.lookup("ServerStation");
+			Utilisateur utilisateur = new Utilisateur(server);
+			new AppFrame(utilisateur);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
-	protected Utilisateur() throws RemoteException {
+	protected Utilisateur(IServer server) throws RemoteException {
 		super();
+		this.server = server;
+    	server.addUtilisateur(this);
 	}
 
 	public int login() {
