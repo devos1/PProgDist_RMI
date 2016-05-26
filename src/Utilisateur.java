@@ -29,7 +29,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	protected Utilisateur(IServer server) throws RemoteException {
 		super();
 		this.server = server;
-    	server.addUtilisateur(this);
+    	//server.addUtilisateur(this);
 	}
 
 	public int login() {
