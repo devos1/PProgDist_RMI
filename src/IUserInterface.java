@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+﻿import java.util.ArrayList;
 
 public interface IUserInterface {
 	public void display(ArrayList<String> texteEcran, String nomStation);

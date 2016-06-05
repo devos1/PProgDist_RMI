@@ -1,9 +1,16 @@
-public class Place {
+﻿public class Place {
 
-	private Enum type;
+	private TypeVehicule typeVehicule;
 
 	private Vehicule vehicule;
 
+	/*
+	 * Constructeur
+	 */
+	public Place(){
+		creerVehicule(this);
+	}
+	
 	public Vehicule getVehicule() {
 		return vehicule;
 	}
@@ -22,9 +29,24 @@ public class Place {
 		return vehicule == null;
 	}
 	
+	/*
+	 * Retourne vrai si un véhicule sur la place
+	 */
 	public boolean isDisponible(){
 		
 		return vehicule != null;
+	}
+
+	public TypeVehicule getType() {
+		return typeVehicule;
+	}
+
+	public void setType(TypeVehicule typeVehicule) {
+		this.typeVehicule = typeVehicule;
+	}
+	
+	public void creerVehicule(Place place){
+		place.vehicule = new Vehicule(place);
 	}
 
 }

@@ -1,7 +1,8 @@
-import java.awt.Color;
+﻿import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -17,7 +18,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 	JPanel panelLouer, panelRendre;
 	
 	// CONSTRUCTEUR
-	public StationFooterPanel(Utilisateur user) {
+	public StationFooterPanel(Utilisateur user) throws RemoteException {
 		this.user = user;
 		setLayout(new GridLayout(0, 2));
 		
@@ -51,6 +52,8 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		// Add component to main panel
 		add(panelLouer);
 		add(panelRendre);
+		
+		user.display();
 	}
 
 	@Override
@@ -59,5 +62,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
 		String typeVehicule = (String)cbTypeV.getSelectedItem();
 		javax.swing.JOptionPane.showMessageDialog(null,"Tu as choisi " + typeVehicule); 
+		
+		//user.getStation(1).louer(typeVehicule);
 	}
 }

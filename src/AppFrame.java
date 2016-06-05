@@ -1,6 +1,7 @@
-import java.awt.BorderLayout;
+﻿import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
@@ -20,7 +21,7 @@ public class AppFrame extends JFrame implements IUserInterface{
 	GridLayout stationsMainLayout = new GridLayout(2, 2);
 	javax.swing.border.Border blackBorder;
 	
-	public AppFrame(Utilisateur user){
+	public AppFrame(Utilisateur user) throws RemoteException{
 		super("Location de vehicules dans toute la Suisse");
 		this.user = user;
 		user.setUserInterface(this);
@@ -33,10 +34,10 @@ public class AppFrame extends JFrame implements IUserInterface{
 		// Create instances
 		lblNbLocation = new JLabel("...");
 		lblUser = new JLabel("...");
-		panelStationA = new StationPanel(this.user);
-		panelStationB = new StationPanel(this.user);
-		panelStationC = new StationPanel(this.user);
-		panelStationD = new StationPanel(this.user);
+		panelStationA = new StationPanel(this.user, 0);
+		panelStationB = new StationPanel(this.user, 1);
+		panelStationC = new StationPanel(this.user, 2);
+		panelStationD = new StationPanel(this.user, 3);
 		panelStations = new JPanel();
 		
 		// Custom panel Stations and add stations
@@ -46,6 +47,7 @@ public class AppFrame extends JFrame implements IUserInterface{
 		panelStationC.setBorder(blackBorder);
 		panelStationD.setBorder(blackBorder);
 		panelStations.setLayout(stationsMainLayout);
+		
 		panelStations.add(panelStationA);
 		panelStations.add(panelStationB);
 		panelStations.add(panelStationC);
@@ -70,6 +72,7 @@ public class AppFrame extends JFrame implements IUserInterface{
 		setSize(900, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 
 	@Override

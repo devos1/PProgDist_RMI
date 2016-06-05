@@ -1,8 +1,9 @@
-import java.awt.BorderLayout;
+﻿import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -19,17 +20,20 @@ public class StationPanel extends JPanel {
 
 	/**
 	 * Create the panel.
+	 * @throws RemoteException 
 	 */
-	public StationPanel(Utilisateur user) {
+	public StationPanel(Utilisateur user, int indexStation) throws RemoteException {
 		this.user = user;
 		setLayout(new BorderLayout());
 
 		// Create instances
-		lblTitle = new JLabel(" STATION ...");
+		Station station = user.getStation(indexStation);
+		lblTitle = new JLabel(" STATION " + station.getNom());
 		sfPanel = new StationFooterPanel(this.user);
 		panelDetails = new JPanel();
-		lblVelosDetails = new JLabel(" VELOS : x places libres, y vélos disponibles");
-		lblVoituresDetails = new JLabel(" VOITURES : x places libres, y voitures disponibles");
+		
+		lblVelosDetails = new JLabel(getTexteLabelVelo(station));
+		lblVoituresDetails = new JLabel(getTexteLabelVoiture(station));
 
 		// Custom panel details
 		panelDetails.setLayout(new GridLayout(2, 1));
@@ -47,6 +51,28 @@ public class StationPanel extends JPanel {
 		add(lblTitle, BorderLayout.NORTH);
 		add(sfPanel, BorderLayout.SOUTH);
 		add(panelDetails, BorderLayout.CENTER);
+	}
+	
+	public String getTexteLabelVelo(Station station){
+		/*
+		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
+			  String nbPlaceLibre = String.valueOf(station.cptPlacesLibres(typeVehicule));
+			  String nbVhcDispo = String.valueOf(station.cptVehiculesLibres(typeVehicule));
+			  
+		}
+		*/
+		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Velo));
+		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Velo));
+		
+		return " VELOS : " + nbPlacesLibres + " places libres, y vélos " + nbVhcDispo + " disponibles";
+	}
+	
+	public String getTexteLabelVoiture(Station station){
+		
+		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Voiture));
+		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Voiture));
+		
+		return " VOITURES : " + nbPlacesLibres + " places libres, " + nbVhcDispo + " voitures disponibles";
 	}
 
 }

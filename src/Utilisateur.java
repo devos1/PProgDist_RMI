@@ -1,4 +1,4 @@
-import java.rmi.NotBoundException;
+﻿import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -46,6 +46,9 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		return 0;
 	}
 	
+	/*
+	 * 
+	 */
 	public void setUserInterface(IUserInterface userInterface) {
 		this.userInterface = userInterface;
 	}
@@ -53,7 +56,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	/*
 	 * (non-Javadoc)
 	 * @see IUtilisateur#majPlaces(Place, int)
-	 * Envoie une place avec un changement d'�tat (vehicule en plus ou en mois)
+	 * Envoie une place avec un changement d'état (vehicule en plus ou en mois)
 	 */
 	@Override
 	public void majPlaces(Place place, int nbPlaceLoue) throws RemoteException {
@@ -64,12 +67,12 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	/*
 	 * (non-Javadoc)
 	 * @see IUtilisateur#majStations(java.util.ArrayList)
-	 * Envoi l'ensemble des stations du syst�me
-	 * Utiliser � l'initialisation d'un client
+	 * Envoi l'ensemble des stations du système
+	 * Utiliser l'initialisation d'un client
 	 */
 	@Override
 	public void majStations(ArrayList<Station> stations) {
-		// TODO Auto-generated method stub
+		this.stations = stations;
 		
 	}
 
@@ -82,11 +85,34 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+	
+	public Station getStation(int index){
+		return this.stations.get(index);
+	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see IUtilisateur#display()
+	 */
+	
 	@Override
 	public void display() throws RemoteException {
-		userInterface.setNbLocation(1);
+		userInterface.setNbLocation(this.getNbVehicule());
+		userInterface.setUser(this.nom);
 		
+	}
+	
+	/*
+	 * 
+	 */
+	private int getNbVehicule(){
+		int nb;
+		if (this.vehicule == null)
+			nb = 0;
+		else
+			nb = 1;
+		
+		return nb;
 	}
 	
 	

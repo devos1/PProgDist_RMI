@@ -1,4 +1,4 @@
-import java.util.Date;
+﻿import java.util.Date;
 
 public class Vehicule {
 
@@ -15,5 +15,13 @@ public class Vehicule {
 	private Utilisateur utilisateur;
 
 	private Place place;
+	
+	private TypeVehicule typeVehicule;
+	
+	public Vehicule (Place place){
+		this.place = place;
+		this.typeVehicule = place.getType();
+		
+	}
 
 }

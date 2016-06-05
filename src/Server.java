@@ -1,4 +1,4 @@
-import java.io.Console;
+﻿import java.io.Console;
 import java.rmi.AlreadyBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -27,6 +27,7 @@ public class Server extends UnicastRemoteObject implements IServer{
 		super();
 		
 		utilisateurs = new ArrayList<IUtilisateur>();
+		creerStations();
 	}
 	
 	public void send(String texte) {
@@ -76,13 +77,22 @@ public class Server extends UnicastRemoteObject implements IServer{
 
 	@Override
 	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
-		//System.out.println("Utilisateurs %s ajout�s", utilisateur.getNom());
+		//System.out.println("Utilisateurs %s ajoutés", utilisateur.getNom());
 		this.utilisateurs.add(utilisateur);
 	}
 
 	@Override
 	public ArrayList<Station> envoyerStation() {
 		return this.stations;
+	}
+	
+	private void creerStations(){
+		this.stations = new ArrayList<>();
+		
+		this.stations.add(new Station("Yverdon"));
+		this.stations.add(new Station("Neuchatel"));
+		this.stations.add(new Station("Lausanne"));
+		this.stations.add(new Station("Nyon"));
 	}
 
 }
