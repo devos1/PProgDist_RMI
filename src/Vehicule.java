@@ -1,7 +1,10 @@
-﻿import java.util.Date;
+﻿import java.io.Serializable;
+import java.util.Date;
 
-public class Vehicule {
+public class Vehicule implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Date miseEnServiceDt;
 
 	private String couleur;
