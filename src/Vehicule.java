@@ -26,5 +26,11 @@ public class Vehicule implements Serializable {
 		this.typeVehicule = place.getType();
 		
 	}
+	
+	public Vehicule (Place place, TypeVehicule typeVehicule){
+		this.place = place;
+		this.typeVehicule = typeVehicule;
+		
+	}
 
 }

@@ -15,6 +15,12 @@ public class Place implements Serializable {
 		creerVehicule(this);
 	}
 	
+	public Place(TypeVehicule typeVehicule){
+		creerVehicule(this);
+		
+		this.typeVehicule = typeVehicule;
+	}
+	
 	public Vehicule getVehicule() {
 		return vehicule;
 	}
@@ -50,7 +56,7 @@ public class Place implements Serializable {
 	}
 	
 	public void creerVehicule(Place place){
-		place.vehicule = new Vehicule(place);
+		place.vehicule = new Vehicule(place, TypeVehicule.Velo);
 	}
 
 }

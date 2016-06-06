@@ -125,10 +125,10 @@ public class Station implements Serializable {
 	public void creerPlaces(Station station){
 		station.places = new ArrayList<Place>();
 		
-		places.add(new Place());
-		places.add(new Place());
-		places.add(new Place());
-		places.add(new Place());
+		places.add(new Place(TypeVehicule.Voiture));
+		places.add(new Place(TypeVehicule.Voiture));
+		places.add(new Place(TypeVehicule.Velo));
+		places.add(new Place(TypeVehicule.Velo));
 	}
 
 }
