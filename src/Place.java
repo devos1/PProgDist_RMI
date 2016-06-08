@@ -58,5 +58,12 @@ public class Place implements Serializable {
 	public void creerVehicule(Place place){
 		place.vehicule = new Vehicule(place, TypeVehicule.Velo);
 	}
+	
+	public Vehicule prendreVehicule(){
+		Vehicule vehicule;
+		vehicule = this.vehicule;
+		this.vehicule = null;
+		return vehicule; 
+	} 
 
 }

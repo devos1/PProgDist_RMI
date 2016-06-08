@@ -63,6 +63,6 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		String typeVehicule = (String)cbTypeV.getSelectedItem();
 		javax.swing.JOptionPane.showMessageDialog(null,"Tu as choisi " + typeVehicule); 
 		
-		//user.getStation(1).louer(typeVehicule);
+		user.getStation(1).louer(TypeVehicule.Velo);
 	}
 }

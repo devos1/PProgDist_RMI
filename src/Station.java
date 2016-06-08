@@ -29,7 +29,15 @@ public class Station implements Serializable {
 	}
 
 	public Vehicule louer(TypeVehicule typeVehicule) {
-		return null;
+		Vehicule vehicule = null;
+		
+		for (Place place : places) {
+			if (place.isDisponible() && place.getType() == typeVehicule){
+				vehicule = place.prendreVehicule();
+			}
+		}
+		
+		return vehicule;
 	}
 
 	/*
