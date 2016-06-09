@@ -119,6 +119,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	public void louer(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
 		if (this.vehicule == null){
 			vehicule = getStation(indexStation).louer(typeVehicule);
+			display();
 		}else{
 			//Erreur déjà une location en cours
 		}

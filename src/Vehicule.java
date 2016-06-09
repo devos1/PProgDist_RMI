@@ -9,11 +9,11 @@ public class Vehicule implements Serializable {
 
 	private String couleur;
 
-	private Enum catPrix;
+	private CatPrix catPrix;
 
-	private Enum marque;
+	private MarqueVehicule marque;
 
-	private Enum modele;
+	private ModeleVehicule modele;
 
 	private Utilisateur utilisateur;
 
@@ -27,9 +27,13 @@ public class Vehicule implements Serializable {
 		
 	}
 	
-	public Vehicule (Place place, TypeVehicule typeVehicule){
+	public Vehicule (Place place, CatPrix catPrix, MarqueVehicule marque, ModeleVehicule modele, String couleur){
 		this.place = place;
-		this.typeVehicule = typeVehicule;
+		this.typeVehicule = place.getType();
+		this.couleur = couleur;
+		this.marque = marque;
+		this.modele = modele;
+		this.catPrix = catPrix;
 		
 	}
 

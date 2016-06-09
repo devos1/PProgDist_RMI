@@ -44,7 +44,7 @@ public class Place implements Serializable {
 	 */
 	public boolean isDisponible(){
 		
-		return vehicule != null;
+		return this.vehicule != null;
 	}
 
 	public TypeVehicule getType() {
@@ -56,14 +56,14 @@ public class Place implements Serializable {
 	}
 	
 	public void creerVehicule(Place place){
-		place.vehicule = new Vehicule(place, TypeVehicule.Velo);
+		place.vehicule = new Vehicule(place, CatPrix.B, MarqueVehicule.Audi, ModeleVehicule.A3, "Blanc" );
 	}
 	
 	public Vehicule prendreVehicule(){
-		Vehicule vehicule;
-		vehicule = this.vehicule;
+		Vehicule vehiculeRet;
+		vehiculeRet = this.vehicule;
 		this.vehicule = null;
-		return vehicule; 
+		return vehiculeRet; 
 	} 
 
 }

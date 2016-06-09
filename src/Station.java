@@ -34,6 +34,7 @@ public class Station implements Serializable {
 		for (Place place : places) {
 			if (place.isDisponible() && place.getType() == typeVehicule){
 				vehicule = place.prendreVehicule();
+				break;
 			}
 		}
 		
