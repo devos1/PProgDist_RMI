@@ -29,7 +29,7 @@ public class StationPanel extends JPanel {
 		// Create instances
 		Station station = user.getStation(indexStation);
 		lblTitle = new JLabel(" STATION " + station.getNom());
-		sfPanel = new StationFooterPanel(this.user);
+		sfPanel = new StationFooterPanel(this.user, 1);
 		panelDetails = new JPanel();
 		
 		lblVelosDetails = new JLabel(getTexteLabelVelo(station));

@@ -12,14 +12,16 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private Utilisateur user;
+	private int indexStation;
 	JLabel lblLouer, lblRendre;
 	JComboBox<String> comboLouer;
 	JComboBox<String> comboRendre;
 	JPanel panelLouer, panelRendre;
 	
 	// CONSTRUCTEUR
-	public StationFooterPanel(Utilisateur user) throws RemoteException {
+	public StationFooterPanel(Utilisateur user, int indexStation) throws RemoteException {
 		this.user = user;
+		this.indexStation = indexStation;
 		setLayout(new GridLayout(0, 2));
 		
 		String[] vehicules = { "auto", "vélo" };	
