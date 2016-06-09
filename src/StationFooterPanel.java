@@ -58,11 +58,15 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		@SuppressWarnings("unchecked")
-		JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
-		String typeVehicule = (String)cbTypeV.getSelectedItem();
-		javax.swing.JOptionPane.showMessageDialog(null,"Tu as choisi " + typeVehicule); 
-		
-		user.getStation(1).louer(TypeVehicule.Velo);
+		try {
+			@SuppressWarnings("unchecked")
+			JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
+			String typeVehicule = (String)cbTypeV.getSelectedItem();
+			javax.swing.JOptionPane.showMessageDialog(null,"Tu as choisi " + typeVehicule); 
+			user.louer(1, TypeVehicule.Velo);
+		} catch (RemoteException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
