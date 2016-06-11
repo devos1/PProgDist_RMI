@@ -24,7 +24,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		this.indexStation = indexStation;
 		setLayout(new GridLayout(0, 2));
 		
-		String[] vehicules = { "auto", "vélo" };	
+		String[] vehicules = { "voiture", "vélo" };	
 		
 		// Create instances
 		lblLouer = new JLabel(" Louer");
@@ -63,9 +63,27 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		try {
 			@SuppressWarnings("unchecked")
 			JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
-			String typeVehicule = (String)cbTypeV.getSelectedItem();
-			javax.swing.JOptionPane.showMessageDialog(null,"Tu as choisi " + typeVehicule); 
-			user.louer(1, TypeVehicule.Velo);
+			String typeVehiculeStr = (String)cbTypeV.getSelectedItem();
+			
+			//Choix action
+			
+			boolean isLouer = false;
+			
+			// Quel véhicule
+			for (TypeVehicule typeVehicule : TypeVehicule.values()) {
+				if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){  //toUpperCase() == typeVehiculeStr.toUpperCase()){
+					//isLouer = user.louer(1, typeVehicule);
+					isLouer = user.louer(1, typeVehicule);
+					break;
+				}
+			}		
+			
+			if (isLouer){
+				javax.swing.JOptionPane.showMessageDialog(null,"Tu as loué " + typeVehiculeStr); 
+			}else{
+				javax.swing.JOptionPane.showMessageDialog(null,"Impossible de louer " + typeVehiculeStr); 
+			}
+			
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
