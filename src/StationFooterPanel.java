@@ -29,8 +29,8 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		// Create instances
 		lblLouer = new JLabel(" Louer");
 		lblRendre = new JLabel(" Rendre");
-		comboLouer = new JComboBox<String>(vehicules);
-		comboRendre = new JComboBox<String>(vehicules);
+		comboLouer = new JComboBoxLocation(vehicules, TypeActionLocation.Louer); //JComboBox<String>(vehicules);
+		comboRendre = new JComboBoxLocation(vehicules, TypeActionLocation.Rendre);//JComboBox<String>(vehicules);
 		panelLouer = new JPanel();
 		panelRendre = new JPanel();
 		
@@ -62,31 +62,66 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			@SuppressWarnings("unchecked")
-			JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
+			//JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
+			JComboBoxLocation cbTypeV = (JComboBoxLocation)e.getSource();
 			String typeVehiculeStr = (String)cbTypeV.getSelectedItem();
 			
 			//Choix action
-			
-			boolean isLouer = false;
-			
-			// Quel véhicule
-			for (TypeVehicule typeVehicule : TypeVehicule.values()) {
-				if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){  //toUpperCase() == typeVehiculeStr.toUpperCase()){
-					//isLouer = user.louer(1, typeVehicule);
-					isLouer = user.louer(1, typeVehicule);
-					break;
-				}
-			}		
-			
-			if (isLouer){
-				javax.swing.JOptionPane.showMessageDialog(null,"Tu as loué " + typeVehiculeStr); 
-			}else{
-				javax.swing.JOptionPane.showMessageDialog(null,"Impossible de louer " + typeVehiculeStr); 
+			if(cbTypeV.getTypeAction() == TypeActionLocation.Louer){
+				louer(typeVehiculeStr);
 			}
+			else if(cbTypeV.getTypeAction() == TypeActionLocation.Rendre){
+				rendre(typeVehiculeStr);
+			}
+			else{
+				//Erreur
+			}
+			
 			
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
+	
+	/*
+	 * 
+	 */
+	private void louer(String typeVehiculeStr) throws RemoteException{
+		//Choix action
+		
+		boolean isLouer = false;
+		
+		// Quel véhicule
+		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
+			if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){  //toUpperCase() == typeVehiculeStr.toUpperCase()){
+				//isLouer = user.louer(1, typeVehicule);
+				isLouer = user.louer(indexStation, typeVehicule);
+				break;
+			}
+		}		
+		
+		if (isLouer){
+			javax.swing.JOptionPane.showMessageDialog(null,"Tu as loué " + typeVehiculeStr); 
+		}else{
+			javax.swing.JOptionPane.showMessageDialog(null,"Impossible de louer " + typeVehiculeStr); 
+		}
+	}
+	
+	/*
+	 * 
+	 */
+	private void rendre(String typeVehiculeStr) throws RemoteException{
+		boolean isRendu = false;
+		
+		isRendu = user.rendre(indexStation);
+		
+		if (isRendu){
+			javax.swing.JOptionPane.showMessageDialog(null,"Tu as rendu " + typeVehiculeStr); 
+		}else{
+			javax.swing.JOptionPane.showMessageDialog(null,"Impossible de rendre " + typeVehiculeStr); 
+		}
+	}
 }
+
+
