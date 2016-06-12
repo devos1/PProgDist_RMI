@@ -12,16 +12,16 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private Utilisateur user;
-	private int indexStation;
+	private int idStation;
 	JLabel lblLouer, lblRendre;
 	JComboBox<String> comboLouer;
 	JComboBox<String> comboRendre;
 	JPanel panelLouer, panelRendre;
 	
 	// CONSTRUCTEUR
-	public StationFooterPanel(Utilisateur user, int indexStation) throws RemoteException {
+	public StationFooterPanel(Utilisateur user, int idStation) throws RemoteException {
 		this.user = user;
-		this.indexStation = indexStation;
+		this.idStation = idStation;
 		setLayout(new GridLayout(0, 2));
 		
 		String[] vehicules = { "voiture", "vélo" };	
@@ -29,8 +29,8 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		// Create instances
 		lblLouer = new JLabel(" Louer");
 		lblRendre = new JLabel(" Rendre");
-		comboLouer = new JComboBoxLocation(vehicules, TypeActionLocation.Louer); //JComboBox<String>(vehicules);
-		comboRendre = new JComboBoxLocation(vehicules, TypeActionLocation.Rendre);//JComboBox<String>(vehicules);
+		comboLouer = new JComboBoxLocation(vehicules, TypeActionLocation.Louer); 
+		comboRendre = new JComboBoxLocation(vehicules, TypeActionLocation.Rendre);
 		panelLouer = new JPanel();
 		panelRendre = new JPanel();
 		
@@ -62,7 +62,6 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		try {
 			@SuppressWarnings("unchecked")
-			//JComboBox<String> cbTypeV = (JComboBox<String>)e.getSource();
 			JComboBoxLocation cbTypeV = (JComboBoxLocation)e.getSource();
 			String typeVehiculeStr = (String)cbTypeV.getSelectedItem();
 			
@@ -76,8 +75,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 			else{
 				//Erreur
 			}
-			
-			
+					
 		} catch (RemoteException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -95,7 +93,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		// Quel véhicule
 		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
 			if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){  
-				isLouer = user.louer(indexStation, typeVehicule);
+				isLouer = user.louer(idStation, typeVehicule);
 				break;
 			}
 		}		
@@ -116,7 +114,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		// Quel véhicule
 		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
 			if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){ 
-				isRendu = user.rendre(indexStation, typeVehicule);
+				isRendu = user.rendre(idStation, typeVehicule);
 				break;
 			}
 		}

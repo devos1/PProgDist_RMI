@@ -38,14 +38,6 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		stations = server.envoyerStation();
 	}
 
-	public int login() {
-		return 0;
-	}
-
-	public int logout() {
-		return 0;
-	}
-	
 	/*
 	 * 
 	 */
@@ -76,7 +68,9 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		
 	}
 
-	//GETTER - SETTER
+	/*===============
+	 * GETTER / SETTER
+	 ===============*/
 	
 	public String getNom() {
 		return nom;
@@ -86,8 +80,23 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		this.nom = nom;
 	}
 	
-	public Station getStation(int index){
+	/*public Station getStation(int index){
 		return this.stations.get(index);
+	}*/
+	
+	/*
+	 * Retourne une station selon son identifiant
+	 */
+	public Station getStation(int idStation){
+		Station stationRet = null;
+		
+		for (Station stationTmp : this.stations) {
+			if(stationTmp.getID() == idStation){
+				stationRet = stationTmp;
+			}
+		}
+		
+		return stationRet;
 	}
 
 	/*
@@ -147,7 +156,4 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		}
 		return isRendu;
 	}
-	
-	
-
 }

@@ -29,7 +29,7 @@ public class StationPanel extends JPanel {
 		// Create instances
 		Station station = user.getStation(indexStation);
 		lblTitle = new JLabel(" STATION " + station.getNom());
-		sfPanel = new StationFooterPanel(this.user, 1);
+		sfPanel = new StationFooterPanel(this.user, indexStation);
 		panelDetails = new JPanel();
 		
 		lblVelosDetails = new JLabel(getTexteLabelVelo(station));
@@ -54,13 +54,6 @@ public class StationPanel extends JPanel {
 	}
 	
 	public String getTexteLabelVelo(Station station){
-		/*
-		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
-			  String nbPlaceLibre = String.valueOf(station.cptPlacesLibres(typeVehicule));
-			  String nbVhcDispo = String.valueOf(station.cptVehiculesLibres(typeVehicule));
-			  
-		}
-		*/
 		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Velo));
 		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Velo));
 		
@@ -68,7 +61,6 @@ public class StationPanel extends JPanel {
 	}
 	
 	public String getTexteLabelVoiture(Station station){
-		
 		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Voiture));
 		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Voiture));
 		

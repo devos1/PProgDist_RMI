@@ -89,10 +89,15 @@ public class Server extends UnicastRemoteObject implements IServer{
 	private void creerStations(){
 		this.stations = new ArrayList<>();
 		
-		this.stations.add(new Station("Yverdon"));
-		this.stations.add(new Station("Neuchatel"));
-		this.stations.add(new Station("Lausanne"));
-		this.stations.add(new Station("Nyon"));
+		int idStation = 0;
+		
+		this.stations.add(new Station("Yverdon",idStation));
+		idStation++;
+		this.stations.add(new Station("Neuchatel",idStation));
+		idStation++;
+		this.stations.add(new Station("Lausanne",idStation));
+		idStation++;
+		this.stations.add(new Station("Nyon",idStation));
 	}
 
 }

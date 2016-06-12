@@ -8,9 +8,6 @@ public interface IUtilisateur extends Remote{
 	boolean louer(int indexStation, TypeVehicule typeVehicule) throws RemoteException;
 	boolean rendre(int indexStation, TypeVehicule typeVehicule) throws RemoteException;
 	
-	//String getNom();
-	//void setNom(String nom);
-	
 	void display() throws RemoteException;
 
 }

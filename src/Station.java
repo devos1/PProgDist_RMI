@@ -4,9 +4,6 @@ import java.util.List;
 
 public class Station implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Place> places;
@@ -15,12 +12,14 @@ public class Station implements Serializable {
 	private String nom;
 	private String pays;
 	private String ville;
+	private int ID;
 	
 	/*
 	 * Constructeur
 	 */
-	public Station(String nom){
+	public Station(String nom, int id){
 		this.nom = nom;
+		this.setID(id);
 		
 		//Lecture des places
 		creerPlaces(this);
@@ -103,6 +102,14 @@ public class Station implements Serializable {
 		this.nom = nom;
 	}
 	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+	
 	/*===============
 	 * ACTION
 	 ===============*/
@@ -142,6 +149,9 @@ public class Station implements Serializable {
 		return retour;
 	}
 	
+	/*
+	 * Creer un jeu d'essai
+	 */
 	public void creerPlaces(Station station){
 		station.places = new ArrayList<Place>();
 		
@@ -150,5 +160,4 @@ public class Station implements Serializable {
 		places.add(new Place(TypeVehicule.Velo));
 		places.add(new Place(TypeVehicule.Velo));
 	}
-
 }
