@@ -43,41 +43,71 @@ public class Server extends UnicastRemoteObject implements IServer{
 	public void MajPlaces(Place place, int nbPlaceLoue){
 	
 	}
+	
+	/**
+	 * @throws RemoteException 
+	 * 
+	 */
+	public void MajStations() throws RemoteException{
+		for (IUtilisateur user : utilisateurs) {
+			user.majStations(stations);
+		}
+	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see IServer#louer(Station, TypeVehicule)
 	 */
 	@Override
-	public Vehicule louer(Station station, TypeVehicule typeVehicule) {
+	public Vehicule louer(int idStation, TypeVehicule typeVehicule) {
 		Vehicule vehiculeRetour = null;
 		
 		for (Station stationTmp : stations) {
-			if (station == stationTmp){
-				// Boucle pour trouver une place de libre
-				vehiculeRetour = station.getVehiculeDisponible();
+			if (vehiculeRetour == null){
+				if (idStation == stationTmp.getID()){
+					// Boucle pour trouver une place de libre
+					vehiculeRetour = stationTmp.louer(typeVehicule); //getVehiculeDisponible();
+				}
+			}
+			else{
+				// Véhicule trouvé
+				break;
 			}
 		}
+		
+		if (vehiculeRetour != null)
+			System.out.println("Location: OK station:" + String.valueOf(idStation) + " - Type véhicule: " + String.valueOf(vehiculeRetour.getTypeVehicule()));
+		else
+			System.out.println("Location: KO dans la station "+ String.valueOf(idStation));
 		
 		return vehiculeRetour;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see IServer#rendre(Station, Vehicule)
 	 */
 	@Override
-	public boolean rendre(Station station, Vehicule vehicule) {
+	public boolean rendre(int idStation, Vehicule vehicule) {
 		boolean retourPossible = false;
 		
-		retourPossible = station.rendre(vehicule);
+		for (Station stationTmp : stations) {
+			if (idStation == stationTmp.getID()){
+				retourPossible = stationTmp.rendre(vehicule);
+			}
+		}
+		
+		if (retourPossible)
+			System.out.println("Rendre: OK station:" + String.valueOf(idStation) + " - Type véhicule: " + String.valueOf(vehicule.getTypeVehicule()));
+		else
+			System.out.println("Rendre: KO dans la station " + String.valueOf(idStation));
 		
 		return retourPossible;
 	}
 
 	@Override
 	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
-		//System.out.println("Utilisateurs %s ajoutés", utilisateur.getNom());
+		System.out.println("Utilisateurs  ajoutés");
 		this.utilisateurs.add(utilisateur);
 	}
 
@@ -86,6 +116,9 @@ public class Server extends UnicastRemoteObject implements IServer{
 		return this.stations;
 	}
 	
+	/**
+	 * 
+	 */
 	private void creerStations(){
 		this.stations = new ArrayList<>();
 		

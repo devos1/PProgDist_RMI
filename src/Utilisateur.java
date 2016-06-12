@@ -28,6 +28,11 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param server
+	 * @throws RemoteException
+	 */
 	protected Utilisateur(IServer server) throws RemoteException {
 		super();
 		this.server = server;
@@ -38,14 +43,15 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		stations = server.envoyerStation();
 	}
 
-	/*
+	/**
 	 * 
+	 * @param userInterface
 	 */
 	public void setUserInterface(IUserInterface userInterface) {
 		this.userInterface = userInterface;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see IUtilisateur#majPlaces(Place, int)
 	 * Envoie une place avec un changement d'état (vehicule en plus ou en mois)
@@ -56,7 +62,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see IUtilisateur#majStations(java.util.ArrayList)
 	 * Envoi l'ensemble des stations du système
@@ -65,7 +71,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	@Override
 	public void majStations(ArrayList<Station> stations) {
 		this.stations = stations;
-		
+		System.out.println("Utilisateur:" + getNom() + " - maj stations ");
 	}
 
 	/*===============
@@ -80,12 +86,10 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		this.nom = nom;
 	}
 	
-	/*public Station getStation(int index){
-		return this.stations.get(index);
-	}*/
-	
-	/*
+	/**
 	 * Retourne une station selon son identifiant
+	 * @param idStation
+	 * @return
 	 */
 	public Station getStation(int idStation){
 		Station stationRet = null;
@@ -99,20 +103,19 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		return stationRet;
 	}
 
-	/*
+	/**
 	 * (non-Javadoc)
 	 * @see IUtilisateur#display()
 	 */
-	
 	@Override
 	public void display() throws RemoteException {
 		userInterface.setNbLocation(this.getNbVehicule());
-		userInterface.setUser(this.nom);
-		
+		userInterface.setUser(this.nom);	
 	}
 	
-	/*
-	 * 
+	/**
+	 * Retourne le nombre de véhicule en cours de location
+	 * @return
 	 */
 	private int getNbVehicule(){
 		int nb;
@@ -124,11 +127,15 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		return nb;
 	}
 
+	/**
+	 * Louer un véhicule dans une stations
+	 */
 	@Override
 	public boolean louer(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
 		boolean isLoue = false;
 		if (this.vehicule == null){
-			vehicule = getStation(indexStation).louer(typeVehicule);
+			//vehicule = getStation(indexStation).louer(typeVehicule);
+			vehicule = server.louer(indexStation, typeVehicule); 
 			isLoue = true;
 			display();
 		}else{
@@ -138,12 +145,16 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		return isLoue;
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public boolean rendre(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
 		boolean isRendu = false;
 		if (this.vehicule != null){
 			if(this.vehicule.getTypeVehicule() == typeVehicule){
-				isRendu = getStation(indexStation).rendre(this.vehicule);
+				//isRendu = getStation(indexStation).rendre(this.vehicule);
+				isRendu = server.rendre(indexStation, this.vehicule);
 				if (isRendu){
 					this.vehicule = null;
 				}

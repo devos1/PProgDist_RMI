@@ -11,11 +11,13 @@ public class Place implements Serializable {
 	/*
 	 * Constructeur
 	 */
-	public Place(){
+	public Place(Station station){
+		this.station = station;
 		creerVehicule(this);
 	}
 	
-	public Place(TypeVehicule typeVehicule){
+	public Place(Station station, TypeVehicule typeVehicule){
+		this.station = station;
 		this.typeVehicule = typeVehicule;
 
 		creerVehicule(this);
@@ -65,6 +67,10 @@ public class Place implements Serializable {
 		place.vehicule = new Vehicule(place, CatPrix.B, MarqueVehicule.Audi, ModeleVehicule.A3, "Blanc" );
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public Vehicule prendreVehicule(){
 		Vehicule vehiculeRet;
 		vehiculeRet = this.vehicule;
