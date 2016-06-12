@@ -130,14 +130,18 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 
 	@Override
-	public boolean rendre(int indexStation) throws RemoteException {
+	public boolean rendre(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
 		boolean isRendu = false;
 		if (this.vehicule != null){
-			isRendu = getStation(indexStation).rendre(this.vehicule);
-			if (isRendu){
-				this.vehicule = null;
+			if(this.vehicule.getTypeVehicule() == typeVehicule){
+				isRendu = getStation(indexStation).rendre(this.vehicule);
+				if (isRendu){
+					this.vehicule = null;
+				}
+				display();
+			}else{
+				// Pas le bon type
 			}
-			display();
 		}else{
 			// Rien n'a rendre
 		}

@@ -94,8 +94,7 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		
 		// Quel véhicule
 		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
-			if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){  //toUpperCase() == typeVehiculeStr.toUpperCase()){
-				//isLouer = user.louer(1, typeVehicule);
+			if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){  
 				isLouer = user.louer(indexStation, typeVehicule);
 				break;
 			}
@@ -114,7 +113,13 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 	private void rendre(String typeVehiculeStr) throws RemoteException{
 		boolean isRendu = false;
 		
-		isRendu = user.rendre(indexStation);
+		// Quel véhicule
+		for (TypeVehicule typeVehicule : TypeVehicule.values()) {
+			if(typeVehicule.toString().equalsIgnoreCase(typeVehiculeStr)){ 
+				isRendu = user.rendre(indexStation, typeVehicule);
+				break;
+			}
+		}
 		
 		if (isRendu){
 			javax.swing.JOptionPane.showMessageDialog(null,"Tu as rendu " + typeVehiculeStr); 
