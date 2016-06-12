@@ -30,12 +30,6 @@ public class Server extends UnicastRemoteObject implements IServer{
 		creerStations();
 	}
 	
-	public void send(String texte) {
-		for (IUtilisateur user : utilisateurs) {
-			//user.display(texte);
-		}
-	}
-	
 	/*
 	 * (non-Javadoc)
 	 * @see IServer#MajPlaces(Place, int)
@@ -51,15 +45,17 @@ public class Server extends UnicastRemoteObject implements IServer{
 	public void MajStations() throws RemoteException{
 		for (IUtilisateur user : utilisateurs) {
 			user.majStations(stations);
+			user.display();
 		}
 	}
 
 	/**
 	 * (non-Javadoc)
+	 * @throws RemoteException 
 	 * @see IServer#louer(Station, TypeVehicule)
 	 */
 	@Override
-	public Vehicule louer(int idStation, TypeVehicule typeVehicule) {
+	public Vehicule louer(int idStation, TypeVehicule typeVehicule) throws RemoteException {
 		Vehicule vehiculeRetour = null;
 		
 		for (Station stationTmp : stations) {
@@ -75,6 +71,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 			}
 		}
 		
+		MajStations();
+		
 		if (vehiculeRetour != null)
 			System.out.println("Location: OK station:" + String.valueOf(idStation) + " - Type véhicule: " + String.valueOf(vehiculeRetour.getTypeVehicule()));
 		else
@@ -85,10 +83,11 @@ public class Server extends UnicastRemoteObject implements IServer{
 
 	/**
 	 * (non-Javadoc)
+	 * @throws RemoteException 
 	 * @see IServer#rendre(Station, Vehicule)
 	 */
 	@Override
-	public boolean rendre(int idStation, Vehicule vehicule) {
+	public boolean rendre(int idStation, Vehicule vehicule) throws RemoteException {
 		boolean retourPossible = false;
 		
 		for (Station stationTmp : stations) {
@@ -102,6 +101,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 				break;
 			}
 		}
+		
+		MajStations();
 		
 		if (retourPossible)
 			System.out.println("Rendre: OK station:" + String.valueOf(idStation) + " - Type véhicule: " + String.valueOf(vehicule.getTypeVehicule()));

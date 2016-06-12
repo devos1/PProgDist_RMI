@@ -32,8 +32,8 @@ public class StationPanel extends JPanel {
 		sfPanel = new StationFooterPanel(this.user, indexStation);
 		panelDetails = new JPanel();
 		
-		lblVelosDetails = new JLabel(getTexteLabelVelo(station));
-		lblVoituresDetails = new JLabel(getTexteLabelVoiture(station));
+		lblVelosDetails = new JLabel("");//getTexteLabelVelo(station));
+		lblVoituresDetails = new JLabel("");//getTexteLabelVoiture(station));
 
 		// Custom panel details
 		panelDetails.setLayout(new GridLayout(2, 1));
@@ -65,6 +65,14 @@ public class StationPanel extends JPanel {
 		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Voiture));
 		
 		return " VOITURES : " + nbPlacesLibres + " places libres, " + nbVhcDispo + " voitures disponibles";
+	}
+	
+	public void setTexteLabelVelo(Station station){
+		lblVelosDetails.setText(getTexteLabelVelo(station));
+	}
+	
+	public void setTexteLabelVoiture(Station station){
+		lblVoituresDetails.setText(getTexteLabelVoiture(station));
 	}
 
 }

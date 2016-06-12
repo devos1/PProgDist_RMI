@@ -97,6 +97,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		for (Station stationTmp : this.stations) {
 			if(stationTmp.getID() == idStation){
 				stationRet = stationTmp;
+				break;
 			}
 		}
 		
@@ -111,6 +112,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	public void display() throws RemoteException {
 		userInterface.setNbLocation(this.getNbVehicule());
 		userInterface.setUser(this.nom);	
+		userInterface.setTexteLabel();
 	}
 	
 	/**

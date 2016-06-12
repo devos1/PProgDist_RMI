@@ -22,7 +22,7 @@ public class AppFrame extends JFrame implements IUserInterface{
 	javax.swing.border.Border blackBorder;
 	
 	public AppFrame(Utilisateur user) throws RemoteException{
-		super("Location de vehicules dans toute la Suisse");
+		super("MobiOsLo: Location de vehicules dans toute la Suisse");
 		this.user = user;
 		user.setUserInterface(this);
 				
@@ -88,5 +88,28 @@ public class AppFrame extends JFrame implements IUserInterface{
 	@Override
 	public void setUser(String nomUser) {
 		lblUser.setText("Utilisateur : " + nomUser);		
+	}
+
+	@Override
+	public void setTexteLabel() {
+		// Velo
+		if (panelStationA != null)
+			panelStationA.setTexteLabelVelo(user.getStation(0));
+		if (panelStationB != null)
+			panelStationB.setTexteLabelVelo(user.getStation(1));
+		if (panelStationC != null)
+			panelStationC.setTexteLabelVelo(user.getStation(2));
+		if (panelStationD != null)
+			panelStationD.setTexteLabelVelo(user.getStation(3));
+		
+		// Voiture
+		if (panelStationA != null)
+			panelStationA.setTexteLabelVoiture(user.getStation(0));
+		if (panelStationB != null)
+			panelStationB.setTexteLabelVoiture(user.getStation(1));
+		if (panelStationC != null)
+			panelStationC.setTexteLabelVoiture(user.getStation(2));
+		if (panelStationD != null)
+		panelStationD.setTexteLabelVoiture(user.getStation(3));	
 	}
 }
