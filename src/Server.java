@@ -92,8 +92,14 @@ public class Server extends UnicastRemoteObject implements IServer{
 		boolean retourPossible = false;
 		
 		for (Station stationTmp : stations) {
-			if (idStation == stationTmp.getID()){
-				retourPossible = stationTmp.rendre(vehicule);
+			if (!retourPossible){
+				if (idStation == stationTmp.getID()){
+					retourPossible = stationTmp.rendre(vehicule);
+				}
+			}
+			else{
+				// Rendu
+				break;
 			}
 		}
 		
