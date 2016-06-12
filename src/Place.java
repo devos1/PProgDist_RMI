@@ -5,8 +5,8 @@ public class Place implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private TypeVehicule typeVehicule;
-
 	private Vehicule vehicule;
+	private Station station;
 
 	/*
 	 * Constructeur
@@ -16,21 +16,11 @@ public class Place implements Serializable {
 	}
 	
 	public Place(TypeVehicule typeVehicule){
-		creerVehicule(this);
-		
 		this.typeVehicule = typeVehicule;
+
+		creerVehicule(this);
 	}
 	
-	public Vehicule getVehicule() {
-		return vehicule;
-	}
-
-	public void setVehicule(Vehicule vehicule) {
-		this.vehicule = vehicule;
-	}
-
-	private Station station;
-
 	/*
 	 * Retourne si la place est libre
 	 */
@@ -46,6 +36,18 @@ public class Place implements Serializable {
 		
 		return this.vehicule != null;
 	}
+	
+	/*===============
+	 * GETTER / SETTER
+	 ===============*/
+	
+	public Vehicule getVehicule() {
+		return vehicule;
+	}
+	
+	public void setVehicule(Vehicule vehicule) {
+		this.vehicule = vehicule;
+	}
 
 	public TypeVehicule getType() {
 		return typeVehicule;
@@ -54,6 +56,10 @@ public class Place implements Serializable {
 	public void setType(TypeVehicule typeVehicule) {
 		this.typeVehicule = typeVehicule;
 	}
+	
+	/*===============
+	 * ACTION
+	 ===============*/
 	
 	public void creerVehicule(Place place){
 		place.vehicule = new Vehicule(place, CatPrix.B, MarqueVehicule.Audi, ModeleVehicule.A3, "Blanc" );

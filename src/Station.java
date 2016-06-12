@@ -10,17 +10,15 @@ public class Station implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Place> places;
-
 	private int posX;
-
 	private int posY;
-
 	private String nom;
-
 	private String pays;
-
 	private String ville;
 	
+	/*
+	 * Constructeur
+	 */
 	public Station(String nom){
 		this.nom = nom;
 		
@@ -28,36 +26,6 @@ public class Station implements Serializable {
 		creerPlaces(this);
 	}
 
-	public Vehicule louer(TypeVehicule typeVehicule) {
-		Vehicule vehicule = null;
-		
-		for (Place place : places) {
-			if (place.isDisponible() && place.getType() == typeVehicule){
-				vehicule = place.prendreVehicule();
-				break;
-			}
-		}
-		
-		return vehicule;
-	}
-
-	/*
-	 * Rend un véhicule
-	 * Si pas possible retourne faux
-	 */
-	public boolean rendre(Vehicule vehicule) {
-		boolean retour = false;
-		Place placeTmp = null;
-		
-		placeTmp = getPlaceDisponible();
-		
-		if (placeTmp != null){
-			placeTmp.setVehicule(vehicule);
-			retour = true;		
-		}
-		
-		return retour;
-	}
 
 	public int cptPlacesLibres(TypeVehicule typeVehicule) {
 		int nbPlaceLibres = 0;
@@ -109,11 +77,11 @@ public class Station implements Serializable {
 	/*
 	 * Retourne une place libre
 	 */
-	public Place getPlaceDisponible(){
+	public Place getPlaceDisponible(TypeVehicule typeVehicule){
 		Place placeRetour = null;
 		
 		for (Place placeTmp : places) {
-			if (placeTmp.isLibre()){
+			if (placeTmp.isLibre() && placeTmp.getType() == typeVehicule){
 				placeRetour = placeTmp;
 				break;
 			}
@@ -123,12 +91,55 @@ public class Station implements Serializable {
 		return placeRetour;
 	}
 
+	/*===============
+	 * GETTER / SETTER
+	 ===============*/
+	
 	public String getNom() {
 		return nom;
 	}
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	/*===============
+	 * ACTION
+	 ===============*/
+	
+	/*
+	 * Prend un véhicule
+	 * Retourne le véhicule
+	 */
+	public Vehicule louer(TypeVehicule typeVehicule) {
+		Vehicule vehicule = null;
+		
+		for (Place place : places) {
+			if (place.isDisponible() && place.getType() == typeVehicule){
+				vehicule = place.prendreVehicule();
+				break;
+			}
+		}
+		
+		return vehicule;
+	}
+
+	/*
+	 * Rend un véhicule
+	 * Si pas possible retourne faux
+	 */
+	public boolean rendre(Vehicule vehicule) {
+		boolean retour = false;
+		Place placeTmp = null;
+		
+		placeTmp = getPlaceDisponible(vehicule.getTypeVehicule());
+		
+		if (placeTmp != null){
+			placeTmp.setVehicule(vehicule);
+			retour = true;		
+		}
+		
+		return retour;
 	}
 	
 	public void creerPlaces(Station station){
