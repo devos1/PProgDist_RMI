@@ -136,7 +136,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		if (this.vehicule == null){
 			//vehicule = getStation(indexStation).louer(typeVehicule);
 			vehicule = server.louer(indexStation, typeVehicule); 
-			isLoue = true;
+			isLoue = vehicule != null;	// loué
 			display();
 		}else{
 			//Déjà une location en cours
