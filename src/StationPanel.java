@@ -62,7 +62,7 @@ public class StationPanel extends JPanel {
 		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Velo));
 		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Velo));
 		
-		return " VELOS : " + nbPlacesLibres + " places libres, y vélos " + nbVhcDispo + " disponibles";
+		return " VELOS : " + nbPlacesLibres + " places libres, " + nbVhcDispo + " vélos disponibles";
 	}
 	
 	/**

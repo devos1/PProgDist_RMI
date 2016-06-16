@@ -63,7 +63,6 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	 */
 	@Override
 	public void majPlaces(Place place, int nbPlaceLoue) throws RemoteException {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -142,7 +141,6 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	public boolean louer(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
 		boolean isLoue = false;
 		if (this.vehicule == null){
-			//vehicule = getStation(indexStation).louer(typeVehicule);
 			vehicule = server.louer(indexStation, typeVehicule); 
 			isLoue = vehicule != null;	// loué
 			display();
@@ -163,7 +161,6 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 		boolean isRendu = false;
 		if (this.vehicule != null){
 			if(this.vehicule.getTypeVehicule() == typeVehicule){
-				//isRendu = getStation(indexStation).rendre(this.vehicule);
 				isRendu = server.rendre(indexStation, this.vehicule);
 				if (isRendu){
 					this.vehicule = null;
