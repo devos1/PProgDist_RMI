@@ -8,14 +8,20 @@ public class Place implements Serializable {
 	private Vehicule vehicule;
 	private Station station;
 
-	/*
-	 * Constructeur
+	/**
+	 * Constructeur Place
+	 * @param station
 	 */
 	public Place(Station station){
 		this.station = station;
 		creerVehicule(this);
 	}
 	
+	/**
+	 * Constructueur Place
+	 * @param station		: station de la place
+	 * @param typeVehicule	: Type de véhicule (Enum)
+	 */
 	public Place(Station station, TypeVehicule typeVehicule){
 		this.station = station;
 		this.typeVehicule = typeVehicule;
@@ -23,16 +29,18 @@ public class Place implements Serializable {
 		creerVehicule(this);
 	}
 	
-	/*
+	/**
 	 * Retourne si la place est libre
+	 * @return
 	 */
 	public boolean isLibre() {
 	
 		return vehicule == null;
 	}
 	
-	/*
+	/**
 	 * Retourne vrai si un véhicule sur la place
+	 * @return
 	 */
 	public boolean isDisponible(){
 		
@@ -63,12 +71,17 @@ public class Place implements Serializable {
 	 * ACTION
 	 ===============*/
 	
+	/**
+	 * Créer un véhicule
+	 * @param place
+	 */
 	public void creerVehicule(Place place){
 		place.vehicule = new Vehicule(place, CatPrix.B, MarqueVehicule.Audi, ModeleVehicule.A3, "Blanc" );
 	}
 	
 	/**
-	 * 
+	 * Retourne le véhicule qui peut être pris. 
+	 * Null si pas possible
 	 * @return
 	 */
 	public Vehicule prendreVehicule(){

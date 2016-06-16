@@ -14,8 +14,10 @@ public class Station implements Serializable {
 	private String ville;
 	private int ID;
 	
-	/*
+	/**
 	 * Constructeur
+	 * @param nom
+	 * @param id
 	 */
 	public Station(String nom, int id){
 		this.nom = nom;
@@ -26,6 +28,11 @@ public class Station implements Serializable {
 	}
 
 
+	/**
+	 * Retourne le nombre de places libres pour un type de véhicule
+	 * @param typeVehicule
+	 * @return
+	 */
 	public int cptPlacesLibres(TypeVehicule typeVehicule) {
 		int nbPlaceLibres = 0;
 		
@@ -39,6 +46,11 @@ public class Station implements Serializable {
 		return nbPlaceLibres;
 	}
 
+	/**
+	 * Retourne le nombre de véhicule dispnonible à la location
+	 * @param typeVehicule
+	 * @return
+	 */
 	public int cptVehiculesDisponible(TypeVehicule typeVehicule) {
 		int nbVehiculeDispo = 0;
 		
@@ -52,13 +64,10 @@ public class Station implements Serializable {
 		return nbVehiculeDispo;
 	}
 
-	public int cptNbPlaces() {
-		return 0;
-	}
-
-	/*
+	/**
 	 * Retourne un véhicule disponible
 	 * Null si pas de disponible
+	 * @return
 	 */
 	public Vehicule getVehiculeDisponible() {
 		Vehicule vehiculeRetour = null;
@@ -73,8 +82,10 @@ public class Station implements Serializable {
 		return vehiculeRetour;
 	}
 	
-	/*
+	/**
 	 * Retourne une place libre
+	 * @param typeVehicule
+	 * @return
 	 */
 	public Place getPlaceDisponible(TypeVehicule typeVehicule){
 		Place placeRetour = null;
@@ -114,9 +125,11 @@ public class Station implements Serializable {
 	 * ACTION
 	 ===============*/
 	
-	/*
+	/**
 	 * Prend un véhicule
-	 * Retourne le véhicule
+	 * Retourne le véhicule 
+	 * @param typeVehicule
+	 * @return
 	 */
 	public Vehicule louer(TypeVehicule typeVehicule) {
 		Vehicule vehicule = null;
@@ -131,9 +144,11 @@ public class Station implements Serializable {
 		return vehicule;
 	}
 
-	/*
+	/**
 	 * Rend un véhicule
 	 * Si pas possible retourne faux
+	 * @param vehicule
+	 * @return
 	 */
 	public boolean rendre(Vehicule vehicule) {
 		boolean retour = false;
@@ -149,8 +164,10 @@ public class Station implements Serializable {
 		return retour;
 	}
 	
-	/*
+	
+	/**
 	 * Creer un jeu d'essai
+	 * @param station
 	 */
 	public void creerPlaces(Station station){
 		station.places = new ArrayList<Place>();

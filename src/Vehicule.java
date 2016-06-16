@@ -14,12 +14,24 @@ public class Vehicule implements Serializable {
 	private Place place;	
 	private TypeVehicule typeVehicule;
 	
+	/**
+	 * Constructueur Vehicule
+	 * @param place
+	 */
 	public Vehicule (Place place){
 		this.place = place;
 		this.setTypeVehicule(place.getType());
 		
 	}
 	
+	/**
+	 * Constructueur Vehicule
+	 * @param place
+	 * @param catPrix
+	 * @param marque
+	 * @param modele
+	 * @param couleur
+	 */
 	public Vehicule (Place place, CatPrix catPrix, MarqueVehicule marque, ModeleVehicule modele, String couleur){
 		this.place = place;
 		this.setTypeVehicule(place.getType());

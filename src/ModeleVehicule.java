@@ -1,7 +1,8 @@
 import java.io.Serializable;
 
 /*
- * 
+ * Enumération des modèles de véhicule
+ * Amélioration possible, lier les modèles aux marques
  */
 public enum ModeleVehicule implements Serializable{
 	A3,

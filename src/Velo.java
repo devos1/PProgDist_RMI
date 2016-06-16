@@ -2,7 +2,6 @@
 
 	public Velo(Place place, TypeVehicule typeVehicule) {
 		super(place);
-		// TODO Auto-generated constructor stub
 	}
 
 	private Enum entrainement;

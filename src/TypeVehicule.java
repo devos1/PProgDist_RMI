@@ -1,7 +1,9 @@
 ﻿import java.io.Serializable;
 
-/*
- * 
+/**
+ * Enumération des types de véhicule
+ * @author add
+ *
  */
 public enum TypeVehicule implements Serializable{
 	Voiture{
@@ -16,6 +18,4 @@ public enum TypeVehicule implements Serializable{
 	};
 	
 	private static final long serialVersionUID = 1L;
-	   
-
 }

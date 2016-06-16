@@ -75,21 +75,26 @@ public class AppFrame extends JFrame implements IUserInterface{
 		
 	}
 
-	@Override
-	public void display(ArrayList<String> texteEcran, String nomStation) {
-		// TODO Auto-generated method stub	
-	}
 
+	/**
+	 * Affecte au libellé du nombre de véhicule en cours de location
+	 */
 	@Override
 	public void setNbLocation(int nbLocation) {
 		lblNbLocation.setText("Nombre de locations : " + nbLocation + " véhicules");
 	}
 
+	/**
+	 * Affecte au libellé le nom de l'utilisateur en cours
+	 */
 	@Override
 	public void setUser(String nomUser) {
 		lblUser.setText("Utilisateur : " + nomUser);		
 	}
 
+	/**
+	 * Affecte le nom des stations
+	 */
 	@Override
 	public void setTexteLabel() {
 		// Velo

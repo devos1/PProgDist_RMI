@@ -8,7 +8,12 @@ import java.util.ArrayList;
 
 public class Server extends UnicastRemoteObject implements IServer{
 
-	// MAIN
+	/**
+	 * MAIN
+	 * @param args
+	 * @throws RemoteException
+	 * @throws AlreadyBoundException
+	 */
 	public static void main(String[] args) throws RemoteException, AlreadyBoundException {
 		IServer server = new Server();
 		Registry registry = LocateRegistry.createRegistry(1099);
@@ -23,6 +28,10 @@ public class Server extends UnicastRemoteObject implements IServer{
 	private ArrayList<Vehicule> vehiculeLoue;  
 	private ArrayList<IUtilisateur> utilisateurs;
 	
+	/**
+	 * Constructueur
+	 * @throws RemoteException
+	 */
 	protected Server() throws RemoteException {
 		super();
 		
@@ -30,15 +39,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 		creerStations();
 	}
 	
-	/*
-	 * (non-Javadoc)
-	 * @see IServer#MajPlaces(Place, int)
-	 */
-	public void MajPlaces(Place place, int nbPlaceLoue){
-	
-	}
-	
 	/**
+	 * Mise à jours de stations
 	 * @throws RemoteException 
 	 * 
 	 */
@@ -50,7 +52,8 @@ public class Server extends UnicastRemoteObject implements IServer{
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * Louer un véhicule, si possible le retourne
+	 * Sinon null
 	 * @throws RemoteException 
 	 * @see IServer#louer(Station, TypeVehicule)
 	 */
@@ -82,7 +85,9 @@ public class Server extends UnicastRemoteObject implements IServer{
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * Rendre un véhicule
+	 * Vrai = possible
+	 * Faux = pas possible
 	 * @throws RemoteException 
 	 * @see IServer#rendre(Station, Vehicule)
 	 */
@@ -112,19 +117,25 @@ public class Server extends UnicastRemoteObject implements IServer{
 		return retourPossible;
 	}
 
+	/**
+	 * Ajouter un utilisateur dans la liste du serveur
+	 */
 	@Override
 	public void addUtilisateur(IUtilisateur utilisateur) throws RemoteException {
 		System.out.println("Utilisateurs  ajoutés");
 		this.utilisateurs.add(utilisateur);
 	}
 
+	/**
+	 * Retourne l'ensemble des stations du serveur
+	 */
 	@Override
 	public ArrayList<Station> envoyerStation() {
 		return this.stations;
 	}
 	
 	/**
-	 * 
+	 * Créer une stations
 	 */
 	private void creerStations(){
 		this.stations = new ArrayList<>();

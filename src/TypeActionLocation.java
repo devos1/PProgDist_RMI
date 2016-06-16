@@ -1,4 +1,10 @@
+import java.io.Serializable;
 
+/**
+ * Enumération des type d'action location
+ * @author add
+ *
+ */
 public enum TypeActionLocation {
 	Louer,
 	Rendre;

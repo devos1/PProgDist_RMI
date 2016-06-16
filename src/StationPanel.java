@@ -53,6 +53,11 @@ public class StationPanel extends JPanel {
 		add(panelDetails, BorderLayout.CENTER);
 	}
 	
+	/**
+	 * Retourne le texte pour les labels d'informations du nombre de vélos libre et disponible
+	 * @param station
+	 * @return
+	 */
 	public String getTexteLabelVelo(Station station){
 		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Velo));
 		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Velo));
@@ -60,6 +65,11 @@ public class StationPanel extends JPanel {
 		return " VELOS : " + nbPlacesLibres + " places libres, y vélos " + nbVhcDispo + " disponibles";
 	}
 	
+	/**
+	 * Retourne le texte pour les labels d'informations du nombre de voitures libre et disponible
+	 * @param station
+	 * @return
+	 */
 	public String getTexteLabelVoiture(Station station){
 		String nbPlacesLibres = String.valueOf(station.cptPlacesLibres(TypeVehicule.Voiture));
 		String nbVhcDispo = String.valueOf(station.cptVehiculesDisponible(TypeVehicule.Voiture));
@@ -67,10 +77,18 @@ public class StationPanel extends JPanel {
 		return " VOITURES : " + nbPlacesLibres + " places libres, " + nbVhcDispo + " voitures disponibles";
 	}
 	
+	/**
+	 * Affecte les texte d'information pour les vélos (libre/disponible)
+	 * @param station
+	 */
 	public void setTexteLabelVelo(Station station){
 		lblVelosDetails.setText(getTexteLabelVelo(station));
 	}
 	
+	/**
+	 * Affecte les texte d'information pour les voitures (libre/disponible)
+	 * @param station
+	 */
 	public void setTexteLabelVoiture(Station station){
 		lblVoituresDetails.setText(getTexteLabelVoiture(station));
 	}

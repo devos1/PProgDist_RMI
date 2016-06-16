@@ -18,7 +18,12 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 	JComboBox<String> comboRendre;
 	JPanel panelLouer, panelRendre;
 	
-	// CONSTRUCTEUR
+	/**
+	 * CONSTRUCTEUR
+	 * @param user
+	 * @param idStation
+	 * @throws RemoteException
+	 */
 	public StationFooterPanel(Utilisateur user, int idStation) throws RemoteException {
 		this.user = user;
 		this.idStation = idStation;
@@ -58,6 +63,9 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		user.display();
 	}
 
+	/**
+	 * Evénement du chois dans les listebox
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
@@ -82,8 +90,12 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		}
 	}
 	
-	/*
-	 * 
+	
+	/**
+	 * Louer un véhicule
+	 * Appeler les méthodes de la classe utilisateur
+	 * @param typeVehiculeStr
+	 * @throws RemoteException
 	 */
 	private void louer(String typeVehiculeStr) throws RemoteException{
 		//Choix action
@@ -105,8 +117,11 @@ public class StationFooterPanel extends JPanel implements ActionListener{
 		}
 	}
 	
-	/*
-	 * 
+	
+	/**
+	 * Rendre un véhicule en cours de location
+	 * @param typeVehiculeStr
+	 * @throws RemoteException
 	 */
 	private void rendre(String typeVehiculeStr) throws RemoteException{
 		boolean isRendu = false;

@@ -17,6 +17,12 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	private Vehicule vehicule;
 	private ArrayList<Station> stations;
 	
+	/**
+	 * MAIN
+	 * @param args
+	 * @throws RemoteException
+	 * @throws NotBoundException
+	 */
 	public static void main(String[] args) throws RemoteException, NotBoundException {
 		Registry registry = LocateRegistry.getRegistry("localhost");
 		try {
@@ -29,7 +35,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 	
 	/**
-	 * 
+	 * Constructeur Utilisateur
 	 * @param server
 	 * @throws RemoteException
 	 */
@@ -44,7 +50,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 
 	/**
-	 * 
+	 * Configure l'interface utilisateur
 	 * @param userInterface
 	 */
 	public void setUserInterface(IUserInterface userInterface) {
@@ -52,9 +58,8 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see IUtilisateur#majPlaces(Place, int)
 	 * Envoie une place avec un changement d'état (vehicule en plus ou en mois)
+	 * @see IUtilisateur#majPlaces(Place, int)
 	 */
 	@Override
 	public void majPlaces(Place place, int nbPlaceLoue) throws RemoteException {
@@ -63,10 +68,9 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 
 	/**
-	 * (non-Javadoc)
-	 * @see IUtilisateur#majStations(java.util.ArrayList)
 	 * Envoi l'ensemble des stations du système
 	 * Utiliser l'initialisation d'un client
+	 * @see IUtilisateur#majStations(java.util.ArrayList)
 	 */
 	@Override
 	public void majStations(ArrayList<Station> stations) {
@@ -105,7 +109,7 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 
 	/**
-	 * (non-Javadoc)
+	 * Déclanche le rafraichissement des données de l'interface utilisateur
 	 * @see IUtilisateur#display()
 	 */
 	@Override
@@ -131,6 +135,8 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 
 	/**
 	 * Louer un véhicule dans une stations
+	 * Vrai = loué
+	 * Faux = non loué
 	 */
 	@Override
 	public boolean louer(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
@@ -148,7 +154,9 @@ public class Utilisateur extends UnicastRemoteObject implements IUtilisateur{
 	}
 
 	/**
-	 * 
+	 * Rendre un véhicule à une station 
+	 * Vrai = rendu
+	 * Faux = pas rendu
 	 */
 	@Override
 	public boolean rendre(int indexStation, TypeVehicule typeVehicule) throws RemoteException {
